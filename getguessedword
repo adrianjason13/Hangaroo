@@ -1,0 +1,8 @@
+def getGuessedWord(secretWord, lettersGuessed):
+    update = ''
+    for char in secretWord: 
+         if char in lettersGuessed:
+             update += char
+         else:
+             update += ' _ '
+    return update
