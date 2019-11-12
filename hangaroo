@@ -1,0 +1,45 @@
+def Hangaroo():
+    wordlist = ['courage','apply','fast','risk']
+    lettersGuessed = []
+    secretWord = random.choice(wordlist)
+    NumberofLetters = str(len(secretWord))
+
+    Name = input('Enter your name: ')
+    time.sleep(1.5)
+    print("Welcome to Hangaroo")
+    time.sleep(.5)
+    print (('You need to guess ') + NumberofLetters + (' number of letters.'))
+    time.sleep(.5)
+    print('Remember that if you have 3 mistakes you lose!!')
+    print("Goodluck !", Name)
+    MistakesMade = 0
+    isWordGuessed = False
+    while MistakesMade != 4 and isWordGuessed is False:
+        if secretWord == getGuessedWord(secretWord, lettersGuessed):
+            isWordGuessed = True
+            break
+        print(('You have made ') + str(MistakesMade) + (' mistakes')) #The user will know how many mistakes he made
+        print(('Letters Remaining: ') + getAvailableLetters(lettersGuessed))
+        guess = input('Enter a letter from the english alphabet: ').lower()
+        if guess in secretWord:
+            if guess in lettersGuessed: 
+                print (("You already guessed that letter!: ") + getGuessedWord(secretWord, lettersGuessed))
+                
+            else:
+                lettersGuessed.append(guess)
+                print (('Great Job!: ') + getGuessedWord(secretWord, lettersGuessed))
+               
+        else:
+            if guess in lettersGuessed:
+                print (("You already guessed that letter!: ") + getGuessedWord(secretWord, lettersGuessed))
+               
+            else:
+                lettersGuessed.append(guess)
+                MistakesMade += 1
+                print (('That Letter is not on the Word: ') + getGuessedWord(secretWord, lettersGuessed))
+              
+
+    if isWordGuessed == True:
+        return 'Congratulations, you did it! you won!!'
+    elif MistakesMade == 4:
+        print('You just killed hangaroo!!. The word was ', secretWord, '. Almost!')
