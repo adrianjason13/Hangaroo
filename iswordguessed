@@ -1,0 +1,4 @@
+def isWordGuessed(secretWord, lettersGuessed):
+    B = str(lettersGuessed) in secretWord
+    print(B)
+    return
